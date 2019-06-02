@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title>页面</title>
+  <!-- 页面的元信息 -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+  <!-- 页面主样式文件 -->
+  <style>
+    body,
+    html,
+    .ox {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* 清除浮动 */
+    .clear {
+      clear: both;
+    }
+
+    .owo-animation {
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
+
+    a:link,
+    a:visited {
+      color: #333;
+      text-decoration: none;
+    }
+
+    /* 清除浮动 */
+    .clear:after {
+      content: "";
+      height: 0;
+      line-height: 0;
+      display: block;
+      visibility: hidden;
+      clear: both;
+    }
+
+    .box[template=home] {
+      overflow: hidden;
+    }
+
+    [template=home] .tool-box {
+      position: fixed;
+      width: 100px;
+      height: 40px;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+      z-index: 999;
+    }
+  </style>
+  <!-- 附属css文件 -->
+  <link rel="stylesheet" href="./static/css/main.css" charset="utf-8">
+
+</head>
+
+<body>
+  <!-- 页面区域 -->
+  <div class="box ox" template="home" id="o-home">
+  </div>
+  <!-- owo框架代码 -->
+  <script>
+    "use strict";
+
+    window.owo = {
+      // 页面数据和方法
+      script: {
+        "home": {
+          "data": {
+            "controls": null,
+            "camera": null,
+            "scene": null,
+            "renderer": null,
+            "light": null,
+            "clock": null,
+            "type": "rotate",
+            "model": null,
+            "runing": true,
+            "Material_58": null,
+            "Material_59": null,
+            "window_box_1": null,
+            "window_box_2": null,
+            "arrow_box": null,
+            "waitTime": 0
+          },
+          "init": function init() {
+            var _this = this;
+
+            // 创建摄像机
+            this.data.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 200000);
+            this.data.camera.position.set(600, 500, 4000);
+            this.data.controls = new THREE.OrbitControls(this.data.camera);
+            this.data.controls.target.set(0, 100, 0);
+            this.data.controls.update();
+            this.data.scene = new THREE.Scene();
+            this.data.scene.background = new THREE.Color(0xa0a0a0);
+            this.data.light = new THREE.HemisphereLight(0xffffff, 0x444444);
+            this.data.light.position.set(0, 200, 0);
+            this.data.scene.add(this.data.light);
+            this.data.light = new THREE.DirectionalLight(0xffffff);
+            this.data.light.position.set(0, 200, 100);
+            this.data.light.castShadow = true;
+            this.data.light.shadow.camera.top = 180;
+            this.data.light.shadow.camera.bottom = -100;
+            this.data.light.shadow.camera.left = -120;
+            this.data.light.shadow.camera.right = 120;
+            this.data.scene.add(this.data.light); // this.data.scene.add( new THREE.CameraHelper( this.data.light.shadow.camera ) );
+            // 网格线
+            // var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
+            // grid.material.opacity = 0.2;
+            // grid.material.transparent = true;
+            // this.data.scene.add( grid );
+            // model
+
+            var loader = new THREE.FBXLoader();
+            loader.load('./resource/1.FBX', function(object) {
+              // console.log(object.getObjectByName('Material_58'))
+              _this.data.Material_58 = object.getObjectByName('Material_58');
+              _this.data.Material_59 = object.getObjectByName('Material_59');
+              _this.data.Material_60 = object.getObjectByName('Material_60');
+              _this.data.Material_61 = object.getObjectByName('Material_61');
+              _this.data.window_box_1 = object.getObjectByName('window_box_1');
+              _this.data.window_box_2 = object.getObjectByName('window_box_2'); // this.data.arrow_box = object.getObjectByName('arrow_box')
+              // 隐藏小箭头
+              // console.log(this.data.arrow_box)
+              // this.data.arrow_box.visible = false
+              // console.log(window_box_1)
+              // 右侧墙体默认贴合
+
+              _this.data.Material_58.position.x = _this.data.Material_58.position.x - 80;
+              _this.data.Material_59.position.x = _this.data.Material_59.position.x - 40;
+              _this.data.Material_60.position.z = _this.data.Material_60.position.z + 40;
+              _this.data.Material_61.position.z = _this.data.Material_61.position.z + 80;
+              _this.data.window_box_1.position.z = _this.data.window_box_1.position.z - 80;
+              _this.data.window_box_2.position.z = _this.data.window_box_2.position.z - 40; // 关闭所有窗户
+
+              _this.data.window_box_1.children.forEach(function(element) {
+                if (element.type === 'Mesh') {
+                  element.rotation.x = 0;
+                }
+              });
+
+              _this.data.window_box_2.children.forEach(function(element) {
+                if (element.type === 'Mesh') {
+                  element.rotation.x = 0;
+                }
+              }); // 处理材质
+
+
+              object.traverse(function(child) {
+                // console.log(child.name)
+                if (child.isMesh) {
+                  child.castShadow = true;
+                  child.receiveShadow = true;
+                }
+              });
+
+              _this.data.scene.add(object);
+            });
+            this.data.renderer = new THREE.WebGLRenderer({
+              antialias: true
+            });
+            this.data.renderer.setPixelRatio(window.devicePixelRatio);
+            this.data.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.data.renderer.shadowMap.enabled = true;
+            this.$el.appendChild(this.data.renderer.domElement); // window.addEventListener( 'resize', this.onWindowResize, false );
+          },
+          "animate": function animate() {
+            var _this2 = this;
+
+            var delta = this.data.clock.getDelta();
+
+            if (this.data.runing) {
+              // 旋转模型
+              if (this.data.scene.rotation.y < -Math.PI * 2) this.data.scene.rotation.y = 0; // 等待
+
+              if (this.data.type === 'wait') {
+                if (this.data.waitTime > 100) {
+                  this.data.type = 'back'; // 隐藏小箭头
+                  // this.data.arrow_box.visible = false
+                } else {
+                  this.data.waitTime++; // 小箭头上下移动
+                  // const Y = this.data.arrow_box.position.y
+                  // if (Y < 200) {
+                  //   this.data.arrow_box.position.y += 2
+                  // } else {
+                  //   this.data.arrow_box.position.y = 0
+                  // }
+                }
+              } // 拉远模型
+              // console.log(this.data.type)
+
+
+              if (this.data.type === 'back') {
+                this.back();
+              } // 转到侧面的时候拉近视角
+
+
+              if (this.data.type === 'forward') {
+                this.forward();
+              } // 旋转
+
+
+              if (this.data.type === 'rotate') {
+                // 模式为旋转
+                this.data.type = 'rotate';
+                this.data.scene.rotation.y -= Math.PI * 0.0005;
+
+                if (this.data.scene.rotation.y < -0.55 && this.data.scene.rotation.y > -0.6) {
+                  this.data.type = 'forward';
+                } // 移动视角情况下慢慢归位摄像机
+                // this.homing()
+
+              }
+            } // this.data.arrow_box.position.y ++
+
+
+            this.data.renderer.render(this.data.scene, this.data.camera);
+            setTimeout(function() {
+              _this2.animate();
+            }, 25);
+          },
+          "onWindowResize": function onWindowResize() {
+            this.data.camera.aspect = window.innerWidth / window.innerHeight;
+            this.data.camera.updateProjectionMatrix();
+            this.data.renderer.setSize(window.innerWidth, window.innerHeight);
+          },
+          "created": function created() {
+            if (WEBGL.isWebGLAvailable() === false) {
+              document.body.appendChild(WEBGL.getWebGLErrorMessage());
+            }
+
+            console.log(this);
+            this.data.clock = new THREE.Clock();
+            this.init();
+            this.animate();
+          },
+          "forward": function forward() {
+            // console.log(model)
+            var forwardZ, forwardY; // 模式为前进
+
+            this.data.type = 'forward'; // 拉近摄像机
+
+            if (this.data.camera.position.z > 2000) {
+              this.data.camera.position.z -= 5; // 右侧墙体打开
+
+              this.data.Material_58.position.x += 0.2;
+              this.data.Material_59.position.x += 0.4;
+              this.data.window_box_1.position.z += 0.2;
+              this.data.window_box_2.position.z += 0.4;
+            } else {
+              // Z轴的前进已经完成
+              forwardZ = true;
+            }
+
+            if (this.data.camera.position.y > 400) {
+              this.data.camera.position.y -= 1;
+            } else {
+              // Y轴的前进已经完成
+              forwardY = true;
+            }
+
+            if (this.data.scene.rotation.y > -0.6) {
+              this.data.scene.rotation.y -= Math.PI * 0.0001;
+            } // Z轴Y轴的移动都完成那么拉近操作完成
+
+
+            if (forwardZ && forwardY) {
+              console.log('拉近操作已经完成!');
+              this.data.waitTime = 0;
+              this.data.type = 'wait'; // 显示小箭头
+              // this.data.arrow_box.visible = true
+            }
+          },
+          "back": function back() {
+            var backZ, backY; // 模式为前进
+
+            this.data.type = 'back'; // 拉近摄像机
+
+            if (this.data.camera.position.z < 4000) {
+              this.data.camera.position.z += 5; // 右侧墙体打开
+
+              this.data.Material_58.position.x -= 0.2;
+              this.data.Material_59.position.x -= 0.4;
+              this.data.window_box_1.position.z -= 0.2;
+              this.data.window_box_2.position.z -= 0.4;
+            } else {
+              // Z轴的前进已经完成
+              backZ = true;
+            }
+
+            if (this.data.camera.position.y < 800) {
+              this.data.camera.position.y += 1;
+            } else {
+              // Y轴的前进已经完成
+              backY = true;
+            } // Z轴Y轴的移动都完成那么拉近操作完成
+
+
+            if (backZ && backY) {
+              console.log('拉远操作已经完成!');
+              this.data.type = 'rotate';
+            }
+          },
+          "homing": function homing() {
+            var camera = this.data.camera; // console.log(camera.position.x)
+
+            if (camera.position.x > 611) {
+              camera.position.x -= 10;
+            } else if (camera.position.x < 600) {
+              camera.position.x += 10;
+            }
+
+            if (camera.position.y > 811) {
+              camera.position.y -= 10;
+            } else if (camera.position.y < 800) {
+              camera.position.y += 10;
+            }
+
+            if (camera.position.z > 4011) {
+              camera.position.z -= 10;
+            } else if (camera.position.z < 4000) {
+              camera.position.z += 10;
+            }
+          },
+          "stop": function stop() {
+            console.log('停止自动旋转!');
+            this.data.runing = false;
+          },
+          "openWindow": function openWindow(name) {
+            owo.script.home.data.scene.children[2].getObjectByName(name).rotation.x = -0.5;
+          },
+          "closeWindow": function closeWindow(name) {
+            owo.script.home.data.scene.children[2].getObjectByName(name).rotation.x = 0;
+          }
+        }
+      },
+      // 页面默认入口
+      entry: "home"
+    };
+  </script>
+  <!-- 框架script文件 -->
+  <script src="./static/js/owo.main.js" type="text/javascript" charset="UTF-8"></script>
+  <!-- 调试-热刷新代码 -->
+  <script src="./static/js/autoReload.js" type="text/javascript" charset="UTF-8"></script>
+  <!-- 调试-远程调试 -->
+  <script src="./static/js/log.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/three.js.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/FBXLoader.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/OrbitControls.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/WebGL.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/inflate.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/RectAreaLightUniformsLib.js" type="text/javascript" charset="UTF-8"></script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+19:43:50.420 DEBUG 获取到配置信息: 
+19:43:50.420 DEBUG {"basePath":"./","watcher":{"enable":true,"ignored":"./dist/*","depth":99},"outPut":{"merge":true,"minifyCss":false,"minifyJs":false,"addVersion":false},"serverPort":8000,"server":true,"autoReload":true,"remoteDebug":true,"root":"/src","entry":"home","title":"页面","scheme":["ie"],"outFolder":"./dist","resourceFolder":"./src/resource","headList":[{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}],"scriptList":[{"name":"three.js","src":"./src/script/three.js","babel":false,"defer":false},{"name":"FBXLoader","src":"./src/script/FBXLoader.js","babel":false,"defer":false},{"name":"OrbitControls","src":"./src/script/OrbitControls.js","babel":false,"defer":false},{"name":"WebGL","src":"./src/script/WebGL.js","babel":false,"defer":false},{"name":"inflate.min","src":"./src/script/inflate.min.js","babel":false,"defer":false},{"name":"RectAreaLightUniformsLib","src":"./src/script/RectAreaLightUniformsLib.js","babel":false,"defer":false}],"styleList":[{"name":"main","src":"./src/main.css"}],"pageList":[{"main":true,"isPage":true,"name":"home","src":"./src/page/home.page","temple":"<temple name=\"home\" src=\"./src/page/home.page\" isPage=\"true\"></temple>","outerHTML":"<!DOCTYPE html>\r\n<html lang=\"zh-CN\">\r\n  <head>\r\n    <title>页面</title>\r\n    <!-- 页面的元信息 -->\r\n    <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\"/>\r\n    <meta name=\"viewport\" content=\"initial-scale=1,user-scalable=no,maximum-scale=1\"/>\r\n    <!-- css-output -->\r\n    <!-- animation-output -->\r\n  </head>\r\n  <body>\r\n    <!-- 页面区域 -->\r\n    <temple name=\"home\" src=\"./src/page/home.page\" isPage=\"true\"></temple>\r\n    <!-- script-output -->\r\n  </body>\r\n</html>"}],"dev":{"basePath":"./","watcher":{"enable":true,"ignored":"./dist/*","depth":99},"outPut":{"merge":true,"minifyCss":false,"minifyJs":false,"addVersion":false},"serverPort":8000,"server":true,"autoReload":true,"remoteDebug":true},"build":{"basePath":"./","alertLink":true,"outPut":{"merge":false,"minifyCss":true,"minifyJs":true,"addVersion":true,"embedSize":10}}} 
+19:43:50.420 INFO  --------------------------- 开始编译 --------------------------- 
+19:43:50.420 INFO  程序运行目录: C:\Users\my\3D Objects\building 
+19:43:50.420 INFO  首次启动! 
+19:43:50.420 INFO  生成版本号: 3hlz44vroi9 
+19:43:50.424 INFO  清理资源文件夹: C:\Users\my\3D Objects\building\dist\static 
+19:43:50.424 INFO  文件夹不存在: C:\Users\my\3D Objects\building\dist\static 
+19:43:50.424 INFO  创建文件夹: C:\Users\my\3D Objects\building\dist\static 
+19:43:50.424 INFO  读取模板文件: C:\Users\my\Documents\GitHub\pack\lib\index.html 
+19:43:50.425 DEBUG 读取网页标题: 页面 
+19:43:50.425 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+19:43:50.425 INFO  开始处理模块: home 
+19:43:50.426 DEBUG 处理模板: ./src/page/home.page 
+19:43:50.545 DEBUG 缓存模板: home./src/page/home.page 
+19:43:50.545 DEBUG 模板home处理用时: 119 毫秒! 
+19:43:50.546 INFO  文件夹不存在: C:\Users\my\3D Objects\building\dist\static\resource 
+19:43:50.547 INFO  创建文件夹: C:\Users\my\3D Objects\building\dist\static\resource 
+19:43:50.547 INFO  css中的资源处理完毕! 
+19:43:50.547 DEBUG 使用postcss处理样式，使用了2个插件! 
+19:43:50.565 INFO  正在处理script! 
+19:43:50.566 INFO  工程中只有一个页面! 
+19:43:50.566 DEBUG 页面中不包含切换动画! 
+19:43:51.415 INFO  文件夹不存在: C:\Users\my\3D Objects\building\dist\static\js 
+19:43:51.416 INFO  创建文件夹: C:\Users\my\3D Objects\building\dist\static\js 
+19:43:51.416 DEBUG 选择将js合并到html中! 
+19:43:51.500 DEBUG 添加解决方案: ie 
+19:43:51.500 ERROR file does not exist: C:\Users\my\Documents\GitHub\pack\core\scheme\ie.js 
+19:43:51.500 INFO  js中的资源处理完毕! 
+19:43:51.502 INFO  读取文件: C:\Users\my\Documents\GitHub\pack\core\debug\autoReload.js 
+19:43:51.502 INFO  读取文件: C:\Users\my\Documents\GitHub\pack\core\debug\log.js 
+19:43:51.502 DEBUG 处理引用脚本: [{"name":"three.js","src":"./src/script/three.js","babel":false,"defer":false},{"name":"FBXLoader","src":"./src/script/FBXLoader.js","babel":false,"defer":false},{"name":"OrbitControls","src":"./src/script/OrbitControls.js","babel":false,"defer":false},{"name":"WebGL","src":"./src/script/WebGL.js","babel":false,"defer":false},{"name":"inflate.min","src":"./src/script/inflate.min.js","babel":false,"defer":false},{"name":"RectAreaLightUniformsLib","src":"./src/script/RectAreaLightUniformsLib.js","babel":false,"defer":false}] 
+19:43:51.502 DEBUG 外部脚本数量: 6 
+19:43:51.502 DEBUG 处理脚本: three.js 
+19:43:51.502 DEBUG 不使用bable处理脚本! 
+19:43:51.502 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\three.js 
+19:43:51.502 DEBUG 处理脚本: FBXLoader 
+19:43:51.502 DEBUG 不使用bable处理脚本! 
+19:43:51.502 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\FBXLoader.js 
+19:43:51.502 DEBUG 处理脚本: OrbitControls 
+19:43:51.502 DEBUG 不使用bable处理脚本! 
+19:43:51.502 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\OrbitControls.js 
+19:43:51.502 DEBUG 处理脚本: WebGL 
+19:43:51.502 DEBUG 不使用bable处理脚本! 
+19:43:51.502 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\WebGL.js 
+19:43:51.502 DEBUG 处理脚本: inflate.min 
+19:43:51.502 DEBUG 不使用bable处理脚本! 
+19:43:51.502 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\inflate.min.js 
+19:43:51.503 DEBUG 处理脚本: RectAreaLightUniformsLib 
+19:43:51.503 DEBUG 不使用bable处理脚本! 
+19:43:51.503 INFO  读取文件: C:\Users\my\3D Objects\building\src\script\RectAreaLightUniformsLib.js 
+19:43:51.503 DEBUG 输出scriptData 
+19:43:51.503 DEBUG 判断是否可以输出Html! 
+19:43:51.503 DEBUG 还有没有经过处理的资源! 
+19:43:51.503 INFO  监控文件夹变化: C:\Users\my\3D Objects\building\src 
+19:43:51.512 INFO  服务器运行在: 127.0.0.1:8000 
+19:43:51.746 INFO  使用postcss处理完毕! 用时: 1199 毫秒 
+19:43:51.746 DEBUG 需要经过特殊处理的css: [["[template=home] .box ",".box[template=home] "],["[template=home] .box{",".box[template=home]{"],["[template=home] div","div[template=home] "],["[template=home] div{","div[template=home]{"]] 
+19:43:51.747 INFO  文件夹不存在: C:\Users\my\3D Objects\building\dist\static\css 
+19:43:51.747 INFO  创建文件夹: C:\Users\my\3D Objects\building\dist\static\css 
+19:43:51.747 INFO  读取文件: C:\Users\my\3D Objects\building\src\main.css 
+19:43:51.747 INFO  附属css中的资源不需要处理! 
+19:43:51.747 DEBUG 判断是否可以输出Html! 
+19:43:51.747 DEBUG 准备输出html! 
+19:43:51.747 DEBUG 开始美化html 
+19:43:51.790 INFO  发送重新页面需要刷新命令! 
+19:43:51.793 INFO  读取成功: C:\Users\my\Documents\GitHub\pack\core\debug\autoReload.js 
+19:43:51.793 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\WebGL.js 
+19:43:51.793 INFO  读取成功: C:\Users\my\3D Objects\building\src\main.css 
+19:43:51.793 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\inflate.min.js 
+19:43:51.793 INFO  读取成功: C:\Users\my\Documents\GitHub\pack\core\debug\log.js 
+19:43:51.793 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\OrbitControls.js 
+19:43:51.794 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\autoReload.js 
+19:43:51.798 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\css\main.css 
+19:43:51.798 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\WebGL.js 
+19:43:51.798 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\inflate.min.js 
+19:43:51.798 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\log.js 
+19:43:51.799 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\OrbitControls.js 
+19:43:51.800 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\FBXLoader.js 
+19:43:51.802 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\FBXLoader.js 
+19:43:51.805 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\RectAreaLightUniformsLib.js 
+19:43:51.806 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\RectAreaLightUniformsLib.js 
+19:43:51.808 INFO  读取成功: C:\Users\my\3D Objects\building\src\script\three.js 
+19:43:51.810 INFO  写入文件: C:\Users\my\3D Objects\building\dist\static\js\three.js.js 
